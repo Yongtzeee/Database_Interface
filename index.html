@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+    }
+body {
+    background-color: #daeff2;
+    background-image: url("Capture.PNG");
+    background-repeat: no-repeat;
+    background-position: right top;
+}
+h3 {
+    width: 350px;
+    border-style: double;
+    border-width: 5px;
+    border-color: #a7b4f2;
+    background-color: #354691;
+    color:#a7b4f2;
+    font-family: "MV Boli";
+}
+h1 {
+    color:#7c3599;
+    font-family: "Harrington";
+    font-size:60px;
+    font-weight: bold;
+    text-align :center;
+}
+hr {
+    width: 500px;
+    text-align: center;
+}
+
+
+</style>
+</head>
+
+<body>
+<h1>Movie Rental</h1>
+<hr>
+
+<h3>Choose the table to view.</h3>
+
+<form>
+
+	<select id="typeOfTable" size="10" style="width:150px">
+		<option value="actor" selected>Actor</option>
+		<option value="address">Address</option>
+		<option value="category">Category</option>
+		<option value="city">City</option>
+		<option value="country">Country</option>
+		<option value="customer">Customer</option>
+		<option value="film">Film</option>
+		<option value="inventory">Inventory</option>
+		<option value="language">Language</option>
+		<option value="payment">Payment</option>
+		<option value="rental">Rental</option>
+		<option value="staff">Staff</option>
+		<option value="store">Store</option>
+	</select>
+	<br><br>
+	<input type="button" value="Go" style="width:150px;height:50px" onclick="goToPage()">
+
+</form>
+
+<script>
+
+function goToPage(){
+	var table;
+	var url_table, url;
+	query = document.getElementById("typeOfQuery");
+	table = document.getElementById("typeOfTable");
+	url_table = table.options[table.selectedIndex].value;
+	url = "select/select_" + url_table + ".php";
+	window.location.assign(url);
+}
+
+</script>
+
+</body>
+</html>
+
