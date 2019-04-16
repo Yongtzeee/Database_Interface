@@ -9,7 +9,7 @@
         <br>
         Country Name:<br>
         <input type = "text" name = "name" value = "<?php if (!empty($_GET["name"])) echo $_GET["name"];?>">
-        <br>
+        <br><br>
         <input type ="submit" value = "Submit">
     </form>
 

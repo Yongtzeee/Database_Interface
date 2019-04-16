@@ -1,6 +1,7 @@
 <?php
 	require "../db.php";
 ?>
+<h2>Search Staff</h2>
 
 <input type="button" value="Insert new data" onclick="redirect()"><br><br>
     

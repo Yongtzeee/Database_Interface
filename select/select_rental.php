@@ -65,7 +65,7 @@
 
 <?php
 
-	$sql = "SELECT rental.rental_id,film.title,rental.rental_date,rental.return_date, customer.first_name, customer.last_name , staff.first_name as 'staff_first_name' FROM rental JOIN inventory ON (rental.inventory_id=inventory.inventory_id) JOIN film ON (film.film_id = inventory.film_id) JOIN customer ON (rental.customer_id=customer.customer_id) JOIN staff ON (rental.staff_id=staff.staff_id) WHERE rental.rental_id = '";
+	$sql = "SELECT rental.rental_id,film.title,rental.rental_date,rental.return_date, customer.first_name, customer.last_name , staff.first_name as 'staff_first_name' FROM rental LEFT OUTER JOIN inventory ON (rental.inventory_id=inventory.inventory_id) LEFT OUTER JOIN film ON (film.film_id = inventory.film_id) LEFT OUTER JOIN customer ON (rental.customer_id=customer.customer_id) LEFT OUTER JOIN staff ON (rental.staff_id=staff.staff_id) WHERE rental.rental_id = '";
 	if(!empty($_GET["id"])){
 		$sql = $sql . $_GET["id"]; 
 	}

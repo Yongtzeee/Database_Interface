@@ -40,11 +40,11 @@
 
 <?php
     if (empty($_GET["id"]) && empty($_GET["name"]) && empty($_GET["country_id"])){
-        $sql = "SELECT * FROM city JOIN country ON (city.country_id = country.country_id) ORDER BY city.city_id ASC";
+        $sql = "SELECT * FROM city LEFT OUTER JOIN country ON (city.country_id = country.country_id) ORDER BY city.city_id ASC";
     }else
 	{
 
-	$sql = "SELECT city.city_id, city.city, country.country FROM city JOIN country ON (city.country_id=country.country_id) WHERE city_id = '";
+	$sql = "SELECT city.city_id, city.city, country.country FROM city LEFT OUTER JOIN country ON (city.country_id=country.country_id) WHERE city_id = '";
 	if(!empty($_GET["id"])){
 		$sql = $sql . $_GET["id"]; 
 	}

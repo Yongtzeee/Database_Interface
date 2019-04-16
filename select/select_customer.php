@@ -23,8 +23,8 @@
 	echo '<select name="store_id">';
 	echo '<option value=""> --Not Selected-- </option>';
 	while($conrow = $conresult->fetch_assoc()) {
-		if($conrow["store_id"] == $_GET["store_id"]) echo '<option value="' . $conrow["store_id"] . '" selected="selected" >' . $conrow["store"] . '</option>';
-		else echo '<option value="' . $conrow["store_id"] . '">' . $conrow["store"] . '</option>';	}
+		if($conrow["store_id"] == $_GET["store_id"]) echo '<option value="' . $conrow["store_id"] . '" selected="selected" >' . $conrow["store_id"] . '</option>';
+		else echo '<option value="' . $conrow["store_id"] . '">' . $conrow["store_id"] . '</option>';	}
 	echo "</select><br><br>";
     ?>
   Address:<br>
@@ -34,7 +34,7 @@
 	echo '<select name="address_id">';
 	echo '<option value=""> --Not Selected-- </option>';
 	while($conrow = $conresult->fetch_assoc()) {
-		if($conrow["country_id"] == $_GET["address_id"]) echo '<option value="' . $conrow["address_id"] . '" selected="selected" >' . $conrow["address"] . '</option>';
+		if($conrow["address_id"] == $_GET["address_id"]) echo '<option value="' . $conrow["address_id"] . '" selected="selected" >' . $conrow["address"] . '</option>';
 		else echo '<option value="' . $conrow["address_id"] . '">' . $conrow["address"] . '</option>';	}
 	echo "</select><br><br>";
     ?>
@@ -53,19 +53,20 @@
 
 
 <?php
-    if (empty($_GET["id"]) && empty($_GET["first_name"]) && empty($_GET["last_name"]) && empty($_GET["store_id"]) && empty($_GET["country_id"])){
-        $sql = "SELECT * FROM customer JOIN address ON (customer.address_id = address.address_id) JOIN store ON (customer.store_id = store.store_id) ORDER BY customer.customer_id ASC";
+    if (empty($_GET["id"]) && empty($_GET["first_name"]) && empty($_GET["last_name"]) && empty($_GET["store_id"]) && empty($_GET["country_id"]) && empty($_GET["address_id"])){
+        $sql = "SELECT * FROM customer LEFT OUTER JOIN address ON (customer.address_id = address.address_id) LEFT OUTER JOIN store ON (customer.store_id = store.store_id) ORDER BY customer.customer_id ASC";
     }else
 	{
 
-	$sql = "SELECT customer.customer_id, customer.customer, address.address FROM customer, store.store FROM store JOIN address ON (customer.address_id=address.address_id)  JOIN store ON (customer.store_id=store.store_id) WHERE customer_id = '";
+	$sql = "SELECT customer.*, address.address, store.store_id FROM customer LEFT OUTER JOIN address ON (customer.address_id=address.address_id)  LEFT OUTER JOIN store ON (customer.store_id=store.store_id) WHERE customer_id = '";
 	if(!empty($_GET["id"])){
 		$sql = $sql . $_GET["id"]; 
 	}
-	$sql = $sql . "' OR `customer` LIKE '";
+	$sql = $sql . "' OR `first_name` LIKE '";
 	if(!empty($_GET["first_name"])){
 		$sql = $sql . "%" . $_GET["first_name"] . "%";
 	}
+	$sql = $sql . "' OR `last_name` LIKE '";
 	if(!empty($_GET["last_name"])){
 		$sql = $sql . "%" . $_GET["last_name"] . "%";
 	}

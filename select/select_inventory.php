@@ -28,9 +28,9 @@
 
 <?php
     if (empty($_GET["id"]) && empty($_GET["title"]) && empty($_GET["store_id"])){
-        $sql = "SELECT * FROM inventory JOIN film_text ON (inventory.film_id = film_text.film_id) ORDER BY inventory.inventory_id ASC";
+        $sql = "SELECT * FROM inventory LEFT OUTER JOIN film_text ON (inventory.film_id = film_text.film_id) ORDER BY inventory.inventory_id ASC";
     }else{
-        $sql = "SELECT * FROM inventory JOIN film_text ON (inventory.film_id = film_text.film_id) WHERE inventory_id = '";
+        $sql = "SELECT * FROM inventory LEFT OUTER JOIN film_text ON (inventory.film_id = film_text.film_id) WHERE inventory_id = '";
         if (!empty($_GET["id"])){
             $sql = $sql . $_GET["id"];
         }
@@ -45,8 +45,8 @@
         $sql = $sql . "' ORDER BY inventory.inventory_id ASC ";
     }
     echo $sql;
-	$result=$conn->query($sql);
 	echo "<br>";
+
 	$result = $conn->query($sql);
 	echo "<table border=1>";
 	if ($result->num_rows > 0) {

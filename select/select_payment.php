@@ -4,7 +4,7 @@
 	//echo "Connected successfully <br> <br>";
 
 ?>
-
+<h2>Search Payment</h2>
 <form action="select_payment.php" target="_self" method="GET">
   Payment ID:<br>
   <input type="text" name="paymend_id" value = "<?php if(!empty($_GET["paymend_id"])) echo $_GET["paymend_id"]; ?>">
@@ -38,7 +38,7 @@
 
 
 <?php
-	$sql = "SELECT p.*,c.first_name 'cfname',c.last_name 'clname',s.first_name 'sfname',s.last_name 'slname' FROM payment AS p JOIN customer as c ON (p.customer_id=c.customer_id) JOIN staff as s ON (p.staff_id = s.staff_id) WHERE p.rental_id = '";
+	$sql = "SELECT p.*,c.first_name 'cfname',c.last_name 'clname',s.first_name 'sfname',s.last_name 'slname' FROM payment AS p LEFT OUTER JOIN customer as c ON (p.customer_id=c.customer_id) LEFT OUTER JOIN staff as s ON (p.staff_id = s.staff_id) WHERE p.payment_id = '";
 	if(!empty($_GET["paymend_id"])){
 		$sql = $sql . $_GET["paymend_id"]; 
 	}

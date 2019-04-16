@@ -34,9 +34,9 @@
 
 <?php
 	if (empty($_GET["id"]) && empty($_GET["address"]) && empty($_GET["district"]) && empty($_GET["city"]) && empty($_GET["postal"])){
-	    $sql = "SELECT * FROM address JOIN city ON (address.city_id = city.city_id) ORDER BY address.address_id ASC";
+	    $sql = "SELECT * FROM address LEFT OUTER JOIN city ON (address.city_id = city.city_id) ORDER BY address.address_id ASC";
 	}else{
-	$sql = "SELECT * FROM address JOIN city ON (address.city_id = city.city_id) WHERE address_id = '";
+	$sql = "SELECT * FROM address LEFT OUTER JOIN city ON (address.city_id = city.city_id) WHERE address_id = '";
 	if(!empty($_GET["id"])){
 		$sql = $sql . $_GET["id"]; 
 	}

@@ -1,7 +1,7 @@
 <?php
 	require "../db.php";
 ?>
-
+<h2>Search Store</h2>
 <input type="button" value="Insert new data" onclick="redirect()"><br><br>
     
 <a href="../index.html"><input type="button" value="Homepage"></a><br><br>
@@ -14,7 +14,7 @@
 
 
 <?php
-	$sql = "SELECT *,first_name,last_name,address FROM store JOIN staff ON (staff.staff_id = store.manager_staff_id) JOIN address on (address.address_id = store.address_id)";
+	$sql = "SELECT *,first_name,last_name,address FROM store LEFT OUTER JOIN staff ON (staff.staff_id = store.manager_staff_id) LEFT OUTER JOIN address on (address.address_id = store.address_id)";
 	$result=$conn->query($sql);
 	echo "<br>";
 	$result = $conn->query($sql);

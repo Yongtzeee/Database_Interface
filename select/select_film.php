@@ -4,7 +4,7 @@
 	//echo "Connected successfully <br> <br>";
 
 ?>
-
+<h2>Search Film</h2>
 <form action="select_film.php" target="_self" method="GET">
   id:<br>
   <input type="text" name="id" value = "<?php if(!empty($_GET["id"])) echo $_GET["id"]; ?>">
@@ -43,9 +43,9 @@
 
 <?php
 	if (empty($_GET["id"]) && empty($_GET["title"]) && empty($_GET["release_year"]) && empty($_GET["category_id"])){
-	$sql = "SELECT b.*,a.name,d.name 'catname' FROM film AS b JOIN language as a ON (b.language_id=a.language_id) JOIN film_category as c ON (b.film_id = c.film_ID) JOIN category as d ON (c.category_id = d.category_id) ORDER BY `b`.`film_id` ASC";
+	$sql = "SELECT b.*,a.name,d.name 'catname' FROM film AS b LEFT OUTER JOIN language as a ON (b.language_id=a.language_id) LEFT OUTER JOIN film_category as c ON (b.film_id = c.film_ID) LEFT OUTER JOIN category as d ON (c.category_id = d.category_id) ORDER BY `b`.`film_id` ASC";
 	}else{
-	$sql = "SELECT b.*,a.name,d.name 'catname' FROM film AS b JOIN language as a ON (b.language_id=a.language_id) JOIN film_category as c ON (b.film_id = c.film_ID) JOIN category as d ON (c.category_id = d.category_id) WHERE `b`.`film_id` = '";
+	$sql = "SELECT b.*,a.name,d.name 'catname' FROM film AS b LEFT OUTER JOIN language as a ON (b.language_id=a.language_id) LEFT OUTER JOIN film_category as c ON (b.film_id = c.film_ID) LEFT OUTER JOIN category as d ON (c.category_id = d.category_id) WHERE `b`.`film_id` = '";
 	if(!empty($_GET["id"])){
 		$sql = $sql . $_GET["id"]; 
 	}
@@ -62,7 +62,7 @@
 		$sql = $sql .  $_GET["category_id"];
 	}	
 	
-	$sql = $sql . "' ORDER BY 'film_id' ASC ";
+	$sql = $sql . "' ORDER BY b.film_id ASC ";
     }
 	echo $sql;
 	//echo "Showing results for ID" . $_GET["id"] . " title " . $_GET["title"]; 
