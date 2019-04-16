@@ -18,35 +18,49 @@ h3 {
     border-style: double;
     border-width: 5px;
     border-color: #a7b4f2;
+    border-radius:15px;
     background-color: #354691;
     color:#a7b4f2;
     font-family: "MV Boli";
 }
 h1 {
-    color:#7c3599;
     font-family: "Harrington";
-    font-size:60px;
+    font-size:80px;
     font-weight: bold;
     text-align :center;
-}
-hr {
+    color: white;
     width: 500px;
-    text-align: center;
+    margin: 50px auto;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
-
-
+select {
+    font-family: "Ink Free";
+    font-size: 120%;
+    font-weight: bold;
+    background-color: #1b6c6d;
+    color:#c8f4f4;
+    padding: 10px 15px;
+    border: 2px dashed #c8f4f4;
+    border-radius: 4px;
+}
+select::-webkit-scrollbar {
+    width: 0.5em;
+}
+ 
+select::-webkit-scrollbar-thumb {
+  background-color: #c8f4f4;
+  border-radius: 20px;
+}
 </style>
 </head>
 
 <body>
-<h1>Movie Rental</h1>
-<hr>
-
+<h1>Sakila</h1>
 <h3>Choose the table to view.</h3>
 
 <form>
 
-	<select id="typeOfTable" size="10" style="width:150px">
+	<select id="typeOfTable" size="10" style="width:250px">
 		<option value="actor" selected>Actor</option>
 		<option value="address">Address</option>
 		<option value="category">Category</option>
@@ -62,7 +76,7 @@ hr {
 		<option value="store">Store</option>
 	</select>
 	<br><br>
-	<input type="button" value="Go" style="width:150px;height:50px" onclick="goToPage()">
+	<input type="button" value="Go" style="width:150px;height:50px;font-size:130%" onclick="goToPage()">
 
 </form>
 
