@@ -2,11 +2,11 @@
 	require "../db.php";
 
 	if(!empty($_GET["update"]) && $_GET["update"] == 1){
-		$updatesql = "UPDATE store SET last_update=CURRENT_TIMESTAMP,manager_staff_id = '" . $_GET["staff_id"] . ",address_id = '" . $_GET["address_id"] . "' WHERE store_id ='" . $_GET["store_id"] . "';" ; 
+		$updatesql = "UPDATE store SET last_update=CURRENT_TIMESTAMP,manager_staff_id = '" . $_GET["staff_id"] . "',address_id = '" . $_GET["address_id"] . "' WHERE store_id ='" . $_GET["store_id"] . "';" ; 
 		echo $updatesql;
 		$conn->query($updatesql);
 		echo 'Success <br>';
-		echo '<a href="update_category.php?store_id=' . $_GET["store_id"] . '">Click here to Go back </a>';
+		echo '<a href="update_store.php?store_id=' . $_GET["store_id"] . '">Click here to Go back </a>';
 		exit;
 	}
 	
@@ -44,7 +44,7 @@
 	echo '<input type="submit">';
 
 	echo "<br><br><br>";
-	echo '<br><br><a href="select_staff.php">Back</a> <br>';
+	echo '<br><br><a href="select_store.php">Back</a> <br>';
 
 	$conn->close();
 ?>

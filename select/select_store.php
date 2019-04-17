@@ -14,7 +14,7 @@
 
 
 <?php
-	$sql = "SELECT *,first_name,last_name,address FROM store LEFT OUTER JOIN staff ON (staff.staff_id = store.manager_staff_id) LEFT OUTER JOIN address on (address.address_id = store.address_id)";
+	$sql = "SELECT store.*,staff.first_name,staff.last_name,address FROM store LEFT OUTER JOIN staff ON (staff.staff_id = store.manager_staff_id) LEFT OUTER JOIN address on (address.address_id = store.address_id)";
 	$result=$conn->query($sql);
 	echo "<br>";
 	$result = $conn->query($sql);
@@ -24,7 +24,7 @@
 		while($row = $result->fetch_assoc()) {
 			echo "<tr> <td>" . $row["store_id"]. "</td><td>" . $row["last_name"]. " " . $row["last_name"]. "</td><td>" . $row["address"]  .  "</td><td>";
 			echo '<a target="_self" href=update_store.php?store_id=' . $row["store_id"] . ">Update this Store</a>"."</td><td>";
-			echo '<a target="_self" href=../delete/delete_store.php?storeid=' . $row["store_id"] . ">Delete this Store</a>"."</td>";
+			echo '<a target="_self" href=../delete/delete_store.php?storeid=' . $row["store_id"] . "'>Delete this Store</a>"."</td>";
 			echo "</tr>";
 		}
 		echo "</table>";
